@@ -32,7 +32,7 @@ const CreateGame = () => {
     // Pushing data to Firestore
     const gameRef = await addDoc(collection(db, "games"), game);
 
-    // Clear form fields after submission
+    // Clear form after finish
     setTitle("");
     setIsNew(false);
     setOldPrice("");
