@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { getAuth, signOut } from "firebase/auth";
+import { ToastContainer, toast } from "react-toastify";
+import { removeUser } from "../redux/storeSlice";
 import {
   getFirestore,
   doc,
@@ -16,11 +19,23 @@ const db = getFirestore(app);
 
 const MyAccount = () => {
   const userInfo = useSelector((state) => state.store.userInfo);
+  const dispatch = useDispatch();
+  const auth = getAuth();
 
   // Form state
   const [address, setAddress] = useState("");
   const [savedAddress, setSavedAddress] = useState("");
   const [orders, setOrders] = useState([]);
+
+  const handleSignOut = () => {
+    signOut(auth)
+      .then(() => {
+        dispatch(removeUser());
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   // Fetch the address from Firestore when the userInfo updates
   useEffect(() => {
@@ -118,6 +133,12 @@ const MyAccount = () => {
           ))}
         </div>
       </div>
+      <button
+        onClick={handleSignOut}
+        className=" px-4 py-2 mt-4 bg-red-500 text-white rounded font-bold"
+      >
+        Sign Out
+      </button>
     </div>
   );
 };
