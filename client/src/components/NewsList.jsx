@@ -20,13 +20,14 @@ const NewsList = () => {
   }, []);
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 justify-items-center mt-5">
-      {articles.map((article) => {
+      {articles.map((article, i) => {
         return (
           <NewsItem
             title={article.title}
             description={article.description}
             url={article.url}
             urlToImage={article.urlToImage}
+            key={i}
           />
         );
       })}

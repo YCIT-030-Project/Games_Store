@@ -1,16 +1,10 @@
-import { productsData } from "./api/Api.js";
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Product from "./components/Product.jsx";
 import Cart from "./pages/Cart";
 import Home from "./pages/Home";
-
-import {
-  createBrowserRouter,
-  Outlet,
-  RouterProvider,
-  ScrollRestoration,
-} from "react-router-dom";
 import Login from "./pages/Login.jsx";
 import MyAccount from "./pages/MyAccount.jsx";
 import NewsList from "./components/NewsList.jsx";
@@ -18,66 +12,24 @@ import ProductsPage from "./pages/ProductsPage.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import Contact from "./pages/Contact.jsx";
 
-const Layout = () => {
-  return (
-    <div>
-      <Header />
-      <ScrollRestoration />
-      <Outlet />
-      <Footer />
-    </div>
-  );
-};
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Layout />,
-    children: [
-      {
-        path: "/",
-        element: <Home />,
-      },
-      {
-        path: "/product/:id",
-        element: <Product />,
-      },
-      {
-        path: "/cart",
-        element: <Cart />,
-      },
-      {
-        path: "/login",
-        element: <Login />,
-      },
-      {
-        path: "/myaccount",
-        element: <MyAccount />,
-      },
-      {
-        path: "/news",
-        element: <NewsList />,
-      },
-      {
-        path: "/products",
-        element: <ProductsPage />,
-      },
-      {
-        path: "*",
-        element: <NotFound />,
-      },
-      {
-        path: "/contact",
-        element: <Contact />,
-      },
-    ],
-  },
-]);
-
 function App() {
   return (
     <div className="font-bodyFont">
-      <RouterProvider router={router} />
+      <Router>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/product/:id" element={<Product />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/myaccount" element={<MyAccount />} />
+          <Route path="/news" element={<NewsList />} />
+          <Route path="/products" element={<ProductsPage />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+        <Footer />
+      </Router>
     </div>
   );
 }
