@@ -13,7 +13,6 @@ const ProductsCard = ({ product }) => {
     return String(_id).toLowerCase().split(" ").join("+");
   };
   const rootId = idString(_id);
-  console.log(rootId);
   const handleDetails = () => {
     navigate(`/product/${rootId}`, {
       state: {

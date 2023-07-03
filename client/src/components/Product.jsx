@@ -1,19 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { MdOutlineStar } from "react-icons/md";
 import { useDispatch } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { addToCart } from "../redux/storeSlice";
 import { ToastContainer, toast } from "react-toastify";
 
 const Product = () => {
+  const navigate = useNavigate();
+
   // useDisptach is used to dispatch an action to the redux store (Slice)
   const dispatch = useDispatch();
   const [details, setDetails] = useState({});
   let [baseQty, setBaseQty] = useState(1);
   const location = useLocation();
+
   useEffect(() => {
-    setDetails(location.state.item);
+    if (location.state && location.state.item) {
+      setDetails(location.state.item);
+    } else {
+      navigate("/not-found");
+    }
   }, []);
+
   return (
     <div>
       <div className="max-w-screen-xl mx-auto my-10 flex gap-10">

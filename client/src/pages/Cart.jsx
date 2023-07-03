@@ -51,7 +51,6 @@ const Cart = () => {
         totalAmt: totalAmt,
         orderDate: new Date().toISOString(),
       });
-      console.log("Document written with ID: ", orderRef.id);
     } else {
       toast.error("Payment failed. Please try again.");
     }

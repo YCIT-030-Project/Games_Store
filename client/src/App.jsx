@@ -15,6 +15,7 @@ import Login from "./pages/Login.jsx";
 import MyAccount from "./pages/MyAccount.jsx";
 import NewsList from "./components/NewsList.jsx";
 import ProductsPage from "./pages/ProductsPage.jsx";
+import NotFound from "./pages/NotFound.jsx";
 
 const Layout = () => {
   return (
@@ -66,6 +67,10 @@ const router = createBrowserRouter([
         loader: () => {
           return productsData();
         },
+      },
+      {
+        path: "*",
+        element: <NotFound />,
       },
     ],
   },
