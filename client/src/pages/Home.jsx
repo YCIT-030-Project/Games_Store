@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
 import Banner from "../components/Banner";
 import Products from "../components/Products";
-import { useLoaderData } from "react-router-dom";
+import { productsData } from "../api/Api.js";
 const Home = () => {
   const [products, setProducts] = useState([]);
-  const data = useLoaderData();
   useEffect(() => {
-    setProducts(data.data);
-  }, [data]);
+    async function fetchData() {
+      const data = await productsData();
+      setProducts(data.data);
+    }
 
+    fetchData();
+  }, []);
   return (
     <div>
       <Banner />

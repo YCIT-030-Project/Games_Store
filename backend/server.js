@@ -51,13 +51,13 @@ app.get("/newapi", async (req, res) => {
       return {
         _id: item.id,
         title: item.name,
-        isNew: !item.discounted,
-        oldPrice: (item.original_price / 100).toString(), // convert to dollars
-        price: (item.final_price / 100).toString(), // convert to dollars
-        description: details.short_description, // get from details
-        category: details.type, // get from details
-        image: item.large_capsule_image, // or 'small_capsule_image' or 'header_image'
-        rating: null, // not available
+        isNew: item.discounted,
+        oldPrice: (item.original_price / 100).toString(),
+        price: (item.final_price / 100).toString(),
+        description: details.short_description,
+        category: details.type,
+        image: item.large_capsule_image,
+        rating: null,
       };
     })
   );

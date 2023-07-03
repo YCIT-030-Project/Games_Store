@@ -16,6 +16,7 @@ import MyAccount from "./pages/MyAccount.jsx";
 import NewsList from "./components/NewsList.jsx";
 import ProductsPage from "./pages/ProductsPage.jsx";
 import NotFound from "./pages/NotFound.jsx";
+import Contact from "./pages/Contact.jsx";
 
 const Layout = () => {
   return (
@@ -23,7 +24,6 @@ const Layout = () => {
       <Header />
       <ScrollRestoration />
       <Outlet />
-
       <Footer />
     </div>
   );
@@ -37,9 +37,6 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-        loader: () => {
-          return productsData();
-        },
       },
       {
         path: "/product/:id",
@@ -64,13 +61,14 @@ const router = createBrowserRouter([
       {
         path: "/products",
         element: <ProductsPage />,
-        loader: () => {
-          return productsData();
-        },
       },
       {
         path: "*",
         element: <NotFound />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
       },
     ],
   },

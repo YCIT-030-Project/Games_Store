@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from "react";
 import Products from "../components/Products";
-import { useLoaderData } from "react-router-dom";
+import { productsData } from "../api/Api.js";
 
 const ProductsPage = () => {
   const [products, setProducts] = useState([]);
-  const data = useLoaderData();
+
   useEffect(() => {
-    setProducts(data.data);
-  }, [data]);
+    async function fetchData() {
+      const data = await productsData();
+      setProducts(data.data);
+    }
+
+    fetchData();
+  }, []);
+
   return <Products title="Products" products={products} />;
 };
 

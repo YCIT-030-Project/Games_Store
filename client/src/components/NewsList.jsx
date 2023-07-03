@@ -9,7 +9,7 @@ const NewsList = () => {
     //using axios to fetch data from newsapi.org
     const getArticles = async () => {
       const res = await axios.get(
-        `https://newsapi.org/v2/everything?domains=pcmag.com&apiKey=${
+        `https://newsapi.org/v2/everything?domains=pcmag.com&pageSize=10&apiKey=${
           import.meta.env.VITE_API_NEWSAPI
         }`
       );
@@ -19,7 +19,7 @@ const NewsList = () => {
     getArticles();
   }, []);
   return (
-    <div>
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 justify-items-center mt-5">
       {articles.map((article) => {
         return (
           <NewsItem
