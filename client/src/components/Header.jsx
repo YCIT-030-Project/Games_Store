@@ -54,7 +54,7 @@ const Header = () => {
               </span>
             </div>
           </Link>
-          <Link to="/login">
+          <Link to={userInfo ? "/myaccount" : "/login"}>
             <img
               className="w-8 h-8 rounded-full"
               src={
