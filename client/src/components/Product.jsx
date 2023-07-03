@@ -6,6 +6,7 @@ import { addToCart } from "../redux/storeSlice";
 import { ToastContainer, toast } from "react-toastify";
 
 const Product = () => {
+  // useDisptach is used to dispatch an action to the redux store (Slice)
   const dispatch = useDispatch();
   const [details, setDetails] = useState({});
   let [baseQty, setBaseQty] = useState(1);

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const Header = () => {
+  //these are the states that we are using in this component from redux store such as img of user
   const productData = useSelector((state) => state.store.productData);
   const userInfo = useSelector((state) => state.store.userInfo);
 

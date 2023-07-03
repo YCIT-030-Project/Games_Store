@@ -6,12 +6,14 @@ const NewsList = () => {
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
+    //using axios to fetch data from newsapi.org
     const getArticles = async () => {
       const res = await axios.get(
         `https://newsapi.org/v2/everything?domains=pcmag.com&apiKey=${
           import.meta.env.VITE_API_NEWSAPI
         }`
       );
+      //update the state of the articles
       setArticles(res.data.articles);
     };
     getArticles();

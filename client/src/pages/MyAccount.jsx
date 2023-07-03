@@ -1,6 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { getFirestore, doc, setDoc, getDoc } from "firebase/firestore";
+import {
+  getFirestore,
+  doc,
+  setDoc,
+  getDoc,
+  query,
+  where,
+  getDocs,
+  collection,
+} from "firebase/firestore";
 import { app } from "../firebase.config";
 
 const db = getFirestore(app);
@@ -11,8 +20,9 @@ const MyAccount = () => {
   // Form state
   const [address, setAddress] = useState("");
   const [savedAddress, setSavedAddress] = useState("");
+  const [orders, setOrders] = useState([]);
 
-  // Fetch the address from Firestore when the component mounts or userInfo updates
+  // Fetch the address from Firestore when the userInfo updates
   useEffect(() => {
     const fetchAddress = async () => {
       if (userInfo) {
@@ -24,6 +34,26 @@ const MyAccount = () => {
     fetchAddress();
   }, [userInfo]);
 
+  // Fetch the orders from Firestore when the order updates
+  useEffect(() => {
+    const fetchOrders = async () => {
+      if (userInfo) {
+        const q = query(
+          collection(db, "orders"),
+          where("userInfo._id", "==", userInfo._id)
+        );
+        const querySnapshot = await getDocs(q);
+        const userOrders = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setOrders(userOrders);
+      }
+    };
+
+    fetchOrders();
+  }, [userInfo]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -33,7 +63,7 @@ const MyAccount = () => {
         address,
       });
 
-      // Update the saved address state
+      // Update the saved address
       setSavedAddress(address);
 
       setAddress("");
@@ -43,6 +73,7 @@ const MyAccount = () => {
   if (!userInfo) {
     return <div>Please log in to view this page.</div>;
   }
+
   return (
     <div className="flex flex-col items-center justify-center bg-gray-100 h-screen">
       <img
@@ -67,8 +98,26 @@ const MyAccount = () => {
           Save Address
         </button>
       </form>
-      <p className="mt-4 text-gray-600">Saved Address: {savedAddress}</p>{" "}
-      {/* Display the saved address */}
+      <p className="mt-4 text-gray-600">Saved Address: {savedAddress}</p>
+      <div className="w-64 mt-4">
+        <h3 className="text-xl font-bold mb-2">Your Orders:</h3>
+        <div className="flex justify-center gap-7">
+          {orders.map((order) => (
+            <div key={order.id} className="border rounded mb-4 p-2">
+              <p>
+                <strong>Order ID:</strong> {order.id}
+              </p>
+              <p>
+                <strong>Total Amount:</strong> ${order.totalAmt}
+              </p>
+              <p>
+                <strong>Order Date:</strong>{" "}
+                {new Date(order.orderDate).toLocaleDateString()}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };

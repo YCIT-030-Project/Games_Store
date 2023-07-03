@@ -5,6 +5,10 @@ import { toast } from "react-toastify";
 import StripeCheckout from "react-stripe-checkout";
 import axios from "axios";
 import { restCart } from "../redux/storeSlice";
+import { getFirestore, collection, addDoc } from "firebase/firestore";
+import { app } from "../firebase.config";
+
+const db = getFirestore(app);
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -40,6 +44,14 @@ const Cart = () => {
       // check if payment was successful clear the cart and show success toast
       dispatch(restCart());
       toast.success("Your order has been completed!");
+      // save the order to Firestore
+      const orderRef = await addDoc(collection(db, "orders"), {
+        userInfo: userInfo,
+        productData: productData,
+        totalAmt: totalAmt,
+        orderDate: new Date().toISOString(),
+      });
+      console.log("Document written with ID: ", orderRef.id);
     } else {
       toast.error("Payment failed. Please try again.");
     }
