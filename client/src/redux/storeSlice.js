@@ -40,7 +40,8 @@ export const storeSlice = createSlice({
         (item) => item._id === action.payload
       );
       if (item) {
-        item.quantity--;
+        // stop quantity from going below 1
+        item.quantity = item.quantity > 1 ? item.quantity - 1 : 1;
       }
     },
     addUser: (state, action) => {
