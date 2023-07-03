@@ -11,6 +11,8 @@ import NewsList from "./components/NewsList.jsx";
 import ProductsPage from "./pages/ProductsPage.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import Contact from "./pages/Contact.jsx";
+import CreateGame from "./pages/ourgames/CreateGame";
+import ComuntyProducts from "./pages/ourgames/ComuntyProducts";
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
           <Route path="/products" element={<ProductsPage />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
+          <Route path="/create" element={<CreateGame />} />
+          <Route path="/comuntygames" element={<ComuntyProducts />} />
         </Routes>
         <Footer />
       </Router>
