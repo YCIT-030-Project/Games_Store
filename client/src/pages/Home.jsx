@@ -17,10 +17,7 @@ const Home = () => {
       <Banner />
       <Products
         title="Shoping"
-        desc="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vitae, doloribus
-      dolorem! Eaque placeat expedita harum dolor distinctio exercitationem
-      officia, blanditiis consequuntur molestiae architecto iusto sequi,
-      praesentium, doloribus fuga aliquid minima."
+        desc="Games fetched from Steam API"
         products={products}
       />
     </div>

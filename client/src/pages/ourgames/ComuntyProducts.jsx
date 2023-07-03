@@ -24,13 +24,9 @@ const ComuntyProducts = () => {
 
   return (
     <div>
-      <Banner />
       <Products
         title="Our games"
-        desc="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vitae, doloribus
-  dolorem! Eaque placeat expedita harum dolor distinctio exercitationem
-  officia, blanditiis consequuntur molestiae architecto iusto sequi,
-  praesentium, doloribus fuga aliquid minima."
+        desc="Games Added  by us"
         products={products}
       />
     </div>

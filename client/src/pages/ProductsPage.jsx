@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Products from "../components/Products";
 import { productsData } from "../api/Api.js";
+import ComuntyProducts from "./ourgames/ComuntyProducts";
 
 const ProductsPage = () => {
   const [products, setProducts] = useState([]);
@@ -14,7 +15,12 @@ const ProductsPage = () => {
     fetchData();
   }, []);
 
-  return <Products title="Products" products={products} />;
+  return (
+    <>
+      <Products title="Products" products={products} />
+      <ComuntyProducts />
+    </>
+  );
 };
 
 export default ProductsPage;
