@@ -14,3 +14,4 @@ This is a video games e-commerce website built with the following technologies:
 - React-Toastify notifications
 - Firebase Auth
 - Firestore database
+- Add new games by admin
