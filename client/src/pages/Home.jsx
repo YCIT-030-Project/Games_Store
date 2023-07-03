@@ -12,7 +12,14 @@ const Home = () => {
   return (
     <div>
       <Banner />
-      <Products products={products} />
+      <Products
+        title="Shoping"
+        desc="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vitae, doloribus
+      dolorem! Eaque placeat expedita harum dolor distinctio exercitationem
+      officia, blanditiis consequuntur molestiae architecto iusto sequi,
+      praesentium, doloribus fuga aliquid minima."
+        products={products}
+      />
     </div>
   );
 };

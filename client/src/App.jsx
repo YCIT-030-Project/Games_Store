@@ -14,6 +14,7 @@ import {
 import Login from "./pages/Login.jsx";
 import MyAccount from "./pages/MyAccount.jsx";
 import NewsList from "./components/NewsList.jsx";
+import ProductsPage from "./pages/ProductsPage.jsx";
 
 const Layout = () => {
   return (
@@ -58,6 +59,13 @@ const router = createBrowserRouter([
       {
         path: "/news",
         element: <NewsList />,
+      },
+      {
+        path: "/products",
+        element: <ProductsPage />,
+        loader: () => {
+          return productsData();
+        },
       },
     ],
   },

@@ -1,6 +1,8 @@
 import React from "react";
 import { defaultLogo, paymentlogos } from "../assets";
 import { ImGithub } from "react-icons/im";
+import { Link } from "react-router-dom";
+
 import {
   FaFacebookF,
   FaTwitter,
@@ -44,13 +46,13 @@ const Footer = () => {
               <span>
                 <BsPersonFill />
               </span>
-              my Account
+              <Link to="/myaccount">my Account</Link>
             </p>
             <p className="flex items-center gap-3 hover:text-white duration-300 cursor-pointer">
               <span>
                 <BsPaypal />
               </span>
-              Checkout
+              <Link to="/cart">Checkout</Link>
             </p>
             <p className="flex items-center gap-3 hover:text-white duration-300 cursor-pointer">
               <span>
