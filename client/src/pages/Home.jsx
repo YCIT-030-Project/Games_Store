@@ -16,7 +16,7 @@ const Home = () => {
     <div>
       <Banner />
       <Products
-        title="Shoping"
+        title="Featured Games"
         desc="Games fetched from Steam API"
         products={products}
       />
