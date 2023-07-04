@@ -12,8 +12,8 @@ const Products = ({ products, title, desc }) => {
         <p className="max-w-[700px] text-gray-600 text-center">{desc}</p>
       </div>
       <div className="max-w-screen-xl mx-auto py-10 grid grid-cols-4 gap-10">
-        {products.map((item) => (
-          <ProductsCard key={item._id} product={item} />
+        {products.map((item, i) => (
+          <ProductsCard key={i} product={item} />
         ))}
       </div>
     </div>
