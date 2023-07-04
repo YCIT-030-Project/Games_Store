@@ -1,32 +1,38 @@
 import React, { useState } from "react";
+import { getFirestore, collection, addDoc } from "firebase/firestore";
+import { app } from "../firebase.config";
+import { ToastContainer, toast } from "react-toastify";
+const db = getFirestore(app);
 
 const Contact = () => {
-  const [email, setEmail] = useState('');
-  const [subject, setSubject] = useState('');
-  const [message, setMessage] = useState('');
+  const [email, setEmail] = useState("");
+  const [subject, setSubject] = useState("");
+  const [message, setMessage] = useState("");
 
-const handleEmailChange = (e) => {
-  setEmail(e.target.value);
-};
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
 
-const handleSubjectChange = (e) => {
-  setSubject(e.target.value);
-};
+  const handleSubjectChange = (e) => {
+    setSubject(e.target.value);
+  };
 
-const handleMessageChange = (e) => {
-  setMessage(e.target.value);
-};
-const handleSubmit = (e) => {
-  e.preventDefault();
+  const handleMessageChange = (e) => {
+    setMessage(e.target.value);
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-  console.log('Email:', email);
-  console.log('Subject:', subject);
-  console.log('Message:', message);
-
-  setEmail('');
-  setSubject('');
-  setMessage('');
-};
+    addDoc(collection(db, "messages"), {
+      email: email,
+      subject: subject,
+      message: message,
+    });
+    setEmail("");
+    setSubject("");
+    setMessage("");
+    toast.success("Your message has been sent!");
+  };
 
   return (
     <section className="bg-white ">
@@ -89,11 +95,28 @@ const handleSubmit = (e) => {
               placeholder="Leave a comment..."
             ></textarea>
           </div>
-          <button type="submit" className="px-4 py-2 bg-gray-100 text-gray-500 
+          <button
+            type="submit"
+            className="px-4 py-2 bg-gray-100 text-gray-500 
           rounded mx-auto block mt-4
-           hover:border hover:border-black ">Submit</button>
+           hover:border hover:border-black "
+          >
+            Submit
+          </button>
         </form>
       </div>
+      <ToastContainer
+        position="top-left"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </section>
   );
 };
