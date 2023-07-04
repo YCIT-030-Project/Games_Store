@@ -35,7 +35,7 @@ const Cart = () => {
   };
 
   const payment = async (token) => {
-    const response = await axios.post("http://127.0.0.1:3001/pay", {
+    const response = await axios.post("https://aldukhnback-95bf16f08ede.herokuapp.com/pay", {
       amount: totalAmt * 100,
       token: token,
     });
