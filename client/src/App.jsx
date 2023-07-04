@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
@@ -13,8 +13,24 @@ import NotFound from "./pages/NotFound.jsx";
 import Contact from "./pages/Contact.jsx";
 import CreateGame from "./pages/ourgames/CreateGame";
 import ComuntyProducts from "./pages/ourgames/ComuntyProducts";
+import PacmanLoader from "react-spinners/PacmanLoader";
 
 function App() {
+  const [isLoading, setIsLoading] = useState(false);
+  useEffect(() => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+  }, []);
+  if (isLoading) {
+    return (
+      <div className="flex h-screen justify-center items-center bg-zinc-100">
+        <PacmanLoader color={"#FDE000"} loading={isLoading} size={150} />
+      </div>
+    );
+  }
+
   return (
     <div className="font-bodyFont">
       <Router>
