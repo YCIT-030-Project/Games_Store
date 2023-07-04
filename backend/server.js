@@ -1,4 +1,3 @@
-const MongoClient = require("mongodb").MongoClient;
 const express = require("express");
 const app = express();
 const cors = require("cors");
@@ -54,9 +53,13 @@ app.get("/newapi", async (req, res) => {
         isNew: item.discounted,
         oldPrice: (item.original_price / 100).toString(),
         price: (item.final_price / 100).toString(),
-        description: details.short_description,
-        category: details.type,
-        image: item.large_capsule_image,
+        description: details
+          ? details.short_description
+          : "No description available",
+        category: details ? details.type : "No category available",
+        image: item
+          ? item.large_capsule_image
+          : "https://t3.ftcdn.net/jpg/04/62/93/66/360_F_462936689_BpEEcxfgMuYPfTaIAOC1tCDurmsno7Sp.jpg",
         rating: null,
       };
     })
