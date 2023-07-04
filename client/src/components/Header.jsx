@@ -38,7 +38,7 @@ const Header = () => {
                 Contact
               </li>
             </Link>
-            {userInfo?.email === "abd.aldukhn@gmail.com" && (
+            {userInfo?.email === "abd.aldukhn@gmail.com" || userInfo?.email === "isdhisa@gmail.com" && (
               <Link to="/create">
                 <li className="text-base text-black font-bold hover:text-orange-900 hove:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300  font-titleFont">
                   Add new Game
