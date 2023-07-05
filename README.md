@@ -15,3 +15,8 @@ This is a video games e-commerce website built with the following technologies:
 - Firebase Auth
 - Firestore database
 - Add new games by admin
+
+## New Features
+
+- Search for items in the header
+- Quantity in cart
