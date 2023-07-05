@@ -41,27 +41,29 @@ app.get("/newapi", async (req, res) => {
   // Map to the new structure
   let newStructure = await Promise.all(
     items.map(async (item) => {
-      // Get the details for this app
-      const detailsResponse = await axios.get(
-        `https://store.steampowered.com/api/appdetails?appids=${item.id}&cc=us&l=en`
-      );
-      const details = detailsResponse.data[item.id].data;
-
-      return {
-        _id: item.id,
-        title: item.name,
-        isNew: item.discounted,
-        oldPrice: (item.original_price / 100).toString(),
-        price: (item.final_price / 100).toString(),
-        description: details
-          ? details.short_description
-          : "No description available",
-        category: details ? details.type : "No category available",
-        image: item
-          ? item.large_capsule_image
-          : "https://t3.ftcdn.net/jpg/04/62/93/66/360_F_462936689_BpEEcxfgMuYPfTaIAOC1tCDurmsno7Sp.jpg",
-        rating: null,
-      };
+      try {
+        const detailsResponse = await axios.get(
+          `https://store.steampowered.com/api/appdetails?appids=${item.id}&cc=us&l=en`
+        );
+        const details = detailsResponse.data[item.id].data;
+        return {
+          _id: item.id,
+          title: item.name,
+          isNew: item.discounted,
+          oldPrice: (item.original_price / 100).toString(),
+          price: (item.final_price / 100).toString(),
+          description: details
+            ? details.short_description
+            : "No description available",
+          category: details ? details.type : "No category available",
+          image: item
+            ? item.large_capsule_image
+            : "https://t3.ftcdn.net/jpg/04/62/93/66/360_F_462936689_BpEEcxfgMuYPfTaIAOC1tCDurmsno7Sp.jpg",
+          rating: null,
+        };
+      } catch (error) {
+        console.error("Failed to fetch app details for app id", item.id, error);
+      }
     })
   );
 

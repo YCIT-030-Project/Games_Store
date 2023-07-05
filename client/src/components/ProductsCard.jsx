@@ -9,6 +9,7 @@ const ProductsCard = ({ product }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const _id = product.title;
+
   const idString = (_id) => {
     return String(_id).toLowerCase().split(" ").join("+");
   };
