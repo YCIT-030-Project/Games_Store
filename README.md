@@ -21,6 +21,28 @@ This is a video games e-commerce website built with the following technologies:
 - Search for items in the header
 - Quantity in cart
 
+# BackEnd side and Endpoints
+
+## Dependencies
+
+- `express`: Web framework for Node.js
+- `cors`: Middleware to enable CORS
+- `axios`: HTTP client for making requests
+- `body-parser`: Middleware to parse incoming request bodies
+- `dotenv`: Loads environment variables from a `.env` file
+
+## Usage
+
+1. Install dependencies by running `npm install`.
+2. Rename `.env.example` to `.env` and add you Apis
+3. Start the server by running `npm start`.
+4. The server will be listening on the specified port and has the following routes:
+   - `GET /`: Returns "Hello World!".
+   - `POST /pay`: Accepts a payment token and amount, and creates a charge using the Stripe API.
+   - `GET /newapi`: Fetches data from the Steam Store API and returns it in a new structure.
+
+# Front End
+
 ## ScreenShots
 
 ### Home Page
