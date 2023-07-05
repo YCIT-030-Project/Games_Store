@@ -23,7 +23,7 @@ const SearchResults = ({ result }) => {
       onClick={handleDetails}
       className="p-2 hover:bg-gray-200 cursor-pointer"
     >
-      {result.title}
+      {result?.title}
     </div>
   );
 };
