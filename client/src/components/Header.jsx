@@ -2,11 +2,26 @@ import React from "react";
 import { cartlogo, defaultLogo } from "../assets";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { ImSearch } from "react-icons/im";
+import { useState, useEffect} from "react";
+import Products from "./Products";
 
 const Header = () => {
   //these are the states that we are using in this component from redux store such as img of user
   const productData = useSelector((state) => state.store.productData);
   const userInfo = useSelector((state) => state.store.userInfo);
+
+
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredProducts, setFilteredProducts] = useState([]);
+
+    useEffect(() => {
+    const filtered = productData.filter((product) =>
+      product.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setFilteredProducts(filtered);
+  }, [searchQuery, productData]);
+
 
   return (
     <div className="w-full h-20 bg-white border-b-[1px] border-b-gray-800 font-titleFont sticky top-0 z-50">
@@ -70,6 +85,28 @@ const Header = () => {
               {userInfo.name}
             </p>
           )}
+
+<div className="flex items-center gap-8 flex-grow">
+      <div className="flex-grow">
+        {filteredProducts.map((product, index) => (
+          <Products key={index} product={product} />
+        ))}
+      </div>
+
+      <div className="relative">
+        <input
+          type="text"
+          className="pl-10 pr-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-transparent"
+          placeholder="Search"
+          value={searchQuery}
+          onChange={(event) => setSearchQuery(event.target.value)}
+        />
+        <span className="absolute top-3 left-3 text-gray-400">
+          <ImSearch />
+        </span>
+      </div>
+    </div>
+
         </div>
       </div>
     </div>
