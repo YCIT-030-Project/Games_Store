@@ -20,3 +20,29 @@ This is a video games e-commerce website built with the following technologies:
 
 - Search for items in the header
 - Quantity in cart
+
+## ScreenShots
+
+### Home Page
+
+![alt text](./screenshots/HomePage.png)
+
+### Products Page
+
+![alt text](./screenshots/ProductsPage.png)
+
+### Contact Page
+
+![alt text](./screenshots/ContactPage.png)
+
+### Cart Checkout
+
+![alt text](./screenshots/cart.png)
+
+### User Profile
+
+![alt text](./screenshots/profile.png)
+
+### Sign In Page
+
+![alt text](./screenshots/signin.png)
