@@ -1,5 +1,11 @@
-import React, { useState } from "react";
-import { getFirestore, collection, addDoc } from "firebase/firestore";
+import React, { useEffect, useState } from "react";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDoc,
+  doc,
+} from "firebase/firestore";
 import { app } from "../../firebase.config";
 import { useSelector } from "react-redux";
 
@@ -15,6 +21,20 @@ const CreateGame = () => {
   const [image, setImage] = useState("");
   const [rating, setRating] = useState(null);
   const userInfo = useSelector((state) => state.store.userInfo);
+  const [isAdmin, setIsAdmin] = useState(false);
+  useEffect(() => {
+    if (userInfo) {
+      // Fetch user document from Firestore
+      const fetchUserRole = async () => {
+        const userDocSnap = await getDoc(doc(db, "users", userInfo._id));
+        if (userDocSnap.exists()) {
+          setIsAdmin(userDocSnap.data().role === "admin");
+        }
+      };
+
+      fetchUserRole();
+    }
+  }, [userInfo]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -45,7 +65,7 @@ const CreateGame = () => {
 
   return (
     <>
-      {(userInfo?.email === "abd.aldukhn@gmail.com" && (
+      {isAdmin ? (
         <div className="bg-white ">
           <div className="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
             <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 ">
@@ -123,7 +143,7 @@ const CreateGame = () => {
             </form>
           </div>
         </div>
-      )) || (
+      ) : (
         <div className="bg-white ">
           <div className="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
             <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 ">
