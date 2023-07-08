@@ -6,6 +6,10 @@ This is a video games e-commerce website built with the following technologies:
 - **Backend:** Node.js, Express
 - **Database:** Firebase, Firestore
 
+## Live Demo
+
+[Games E-commerce](https://gamesst.netlify.app/ "PROJECT YCT-30").
+
 ## Features
 
 - Shopping cart
@@ -42,6 +46,29 @@ This is a video games e-commerce website built with the following technologies:
    - `GET /newapi`: Fetches data from the Steam Store API and returns it in a new structure.
 
 # Front End
+
+## Dependencies
+
+1. React
+2. Redux & Redux toolkit
+3. Redux Persist
+4. Axios
+5. Firebase
+6. React dom & React router dom
+7. React icons
+8. TailwindCss
+9. React Spinners
+10. React Toastify for notification
+11. React Stripe
+
+## Usage
+
+- After clone the Repo:
+
+1.  `cd ./client`
+2.  Install dependencies by running `npm install`.
+3.  Rename `.env.example` to `.env` and add you Apis
+4.  Start the App by running `npm run dev`.
 
 ## ScreenShots
 
